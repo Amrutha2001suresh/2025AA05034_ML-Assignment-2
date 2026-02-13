@@ -39,7 +39,7 @@ from sklearn.datasets import load_breast_cancer
 # 1. Load Dataset from CSV
 # ==========================================
 # REPLACE 'breast_cancer.csv' WITH YOUR ACTUAL FILE PATH
-file_path = '/content/data.csv'  # <--- ENTER YOUR FILE PATH HERE
+file_path = 'data.csv'  # <--- ENTER YOUR FILE PATH HERE
 df = pd.read_csv(file_path)
 
 print(f"Dataset Loaded from {file_path}")
