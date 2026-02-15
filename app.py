@@ -30,41 +30,24 @@ selected_model_name = st.sidebar.selectbox("Select a Model", model_options)
 # ==========================================
 # 3. File Upload
 # ==========================================
+st.write("### Upload Data")
+
+# --- NEW CODE: Download Button for Sample Data ---
+# This checks if the file exists (it should be in your repo) and creates a button
+if os.path.exists("test_data.csv"):
+    with open("test_data.csv", "rb") as f:
+        st.download_button(
+            label="⬇️ Download Sample Test Data (CSV)",
+            data=f,
+            file_name="test_data.csv",
+            mime="text/csv",
+            help="Download this file to test the app if you don't have one."
+        )
+else:
+    st.warning("⚠️ 'test_data.csv' not found in repository.")
+# -------------------------------------------------
+
 uploaded_file = st.file_uploader("Upload your input CSV file (Test Data)", type=["csv"])
-
-if uploaded_file is not None:
-    # Load Data
-    try:
-        df = pd.read_csv(uploaded_file)
-        st.write("### Uploaded Data Preview")
-        st.write(df.head())
-    except Exception as e:
-        st.error(f"Error loading file: {e}")
-        st.stop()
-
-    # Check for Target Column (Required for Metrics)
-    # The code assumes target is 'diagnosis' (Kaggle) or 'target' (Scikit-learn)
-    target_col = None
-    if 'diagnosis' in df.columns:
-        target_col = 'diagnosis'
-        # Convert M/B to 0/1 if needed
-        if df[target_col].dtype == 'object':
-             df[target_col] = df[target_col].map({'M': 0, 'B': 1})
-    elif 'target' in df.columns:
-        target_col = 'target'
-    
-    if target_col is None:
-        st.warning("⚠️ No 'diagnosis' or 'target' column found. Cannot calculate accuracy metrics, but will generate predictions.")
-        X_test = df
-        y_test = None
-    else:
-        # Separate Features (X) and Target (y)
-        X_test = df.drop(columns=[target_col])
-        y_test = df[target_col]
-
-        # Cleaning: Drop 'id' or 'Unnamed: 32' if they exist (Common in Kaggle data)
-        if 'id' in X_test.columns: X_test = X_test.drop(columns=['id'])
-        if 'Unnamed: 32' in X_test.columns: X_test = X_test.drop(columns=['Unnamed: 32'])
 
     # ==========================================
     # 4. Load Model & Predict
