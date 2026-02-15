@@ -33,7 +33,20 @@ The following metrics were obtained during the training phase on the BITS Virtua
 | **XGBoost** | 0.9649 | 0.9583 | 0.9857 | 0.9718 | 0.9254 |
 
 *Note: Random Forest and XGBoost provided the most robust performance with high stability.*
+## 📝 Model Performance Observations
+*(Based on the evaluation metrics obtained from BITS Virtual Lab)*
 
+| ML Model Name | Observation about model performance |
+| :--- | :--- |
+| **Logistic Regression** | Performed exceptionally well (~96.5% accuracy), indicating that the dataset has linearly separable features which this model exploits effectively. |
+| **Decision Tree** | Showed the lowest comparative accuracy (~93%). This suggests it may have slightly overfitted the training data or struggled to capture the smooth decision boundaries compared to ensemble methods. |
+| **kNN** | Achieved strong performance (~94.7%), proving that tumors with similar feature magnitudes tend to belong to the same class. |
+| **Naive Bayes** | Surprisingly high accuracy (~96.5%) and recall, suggesting that the assumption of feature independence holds reasonably well for these medical metrics. |
+| **Random Forest** | (Ensemble) Tied for top performance (~96.5%). By averaging multiple trees, it reduced the variance seen in the single Decision Tree model, resulting in a more robust prediction. |
+| **XGBoost** | (Ensemble) delivered top-tier performance (~96.5%) with high AUC. Its gradient boosting approach effectively corrected errors from previous iterations, making it highly reliable for this classification task. |
+
+### 🏆 Final Conclusion
+**Logistic Regression** and **Random Forest** are the recommended models for this application due to their high accuracy and balance between Precision and Recall.
 ## 🛠️ Tech Stack
 * **Language:** Python
 * **Libraries:** Pandas, NumPy, Scikit-learn, XGBoost, Matplotlib, Seaborn
