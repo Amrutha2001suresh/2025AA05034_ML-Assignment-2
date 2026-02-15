@@ -19,24 +19,6 @@ The goal is to develop a machine learning pipeline that:
 * **Target:** Diagnosis (M = Malignant, B = Benign).
 * **Size:** 569 instances, 32 columns.
 
-## 🚀 How to Run Locally
-
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/YOUR_USERNAME/ML-Assignment-2.git](https://github.com/YOUR_USERNAME/ML-Assignment-2.git)
-    ```
-2.  **Navigate to the project directory:**
-    ```bash
-    cd ML-Assignment-2
-    ```
-3.  **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-4.  **Run the Streamlit App:**
-    ```bash
-    streamlit run ml_assignement_2.py
-    ```
 
 ## 📈 Model Performance Comparison
 The following metrics were obtained during the training phase on the BITS Virtual Lab:
